@@ -51,17 +51,17 @@ Route::get('/category/restore/{id}', [CategoryController::class, 'Restore']);
 // Force Delete
 Route::get('/category/forceDel/{id}', [CategoryController::class, 'ForceDel']);
 
-Route::get('/dashboard', function () {
-    // $users = User::all();
-    $users = DB::table('users')->get();
-    return view('dashboard', compact('users'));
-})->middleware(['auth'])->name('dashboard');
-
 // >> Brand
 Route::get('/brand/all', [BrandController::class, 'AllBrand'])->name('all.brand');
 // add brand
 Route::post('/brand/add', [BrandController::class, 'BrandAdd'])->name('brand.add');
 // Edit brand
 Route::get('/brand/edit/{id}', [BrandController::class, 'BrandEdit']);
+
+Route::get('/dashboard', function () {
+    // $users = User::all();
+    $users = DB::table('users')->get();
+    return view('dashboard', compact('users'));
+})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

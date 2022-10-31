@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Hi... <b>{{ Auth::user()->name }}</b>
+            Hi... <b>{{ Auth::user()->name }}</b> <!-- Auth::user()->name --- name of current user  -->
             <b style="float:right;">Total users 
                 <span class="badge bg-danger">{{ count($users) }}</span>
             </b>

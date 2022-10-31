@@ -36,7 +36,13 @@
                                             <th>{{ $categories->firstItem()+$loop->index }}</th>
                                             <td>{{ $category->user->name }}</td>
                                             <td>{{ $category->category_name }}</td>
-                                            <td>{{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}</td>
+                                            <td>
+                                                @if($category->created_at == NULL)
+                                                <span class='text-danger'> No Date Set</span>
+                                                @else    
+                                                {{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}
+                                                @endif
+                                            </td>
                                             <td>
                                                 <a href="{{ url('category/edit/'.$category->id) }}" class="btn btn-warning">Edit</a>
                                                 <a href="{{ url('softDelete/category/'.$category->id) }}" class="btn btn-danger">Delete</a>
