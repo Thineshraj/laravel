@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\Brand;
+use Illuminate\Support\Facades\DB;
 
 class BrandController extends Controller
 {
@@ -25,7 +26,7 @@ class BrandController extends Controller
 
 
         // Image import
-        $brand_image = $request->file('brand_img');
+        $brand_image = $request->file('brand_img'); // Column name of the Brand image
 
         $name_generate = hexdec(uniqid());
         $img_ext = strtolower($brand_image->getClientOriginalExtension());
@@ -45,7 +46,11 @@ class BrandController extends Controller
     }
 
     public function BrandEdit($id) {
-        $brands = Brand::find($id);
+        // $brands = Brand::find($id);
+        // return view('admin/brand/update', compact('brands'));
+
+        // >> Edit, Query builder
+        $brands = DB::table('brands')->where('id', $id)->first();
         return view('admin.brand.update', compact('brands'));
     }
 }

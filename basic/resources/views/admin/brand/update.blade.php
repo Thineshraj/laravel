@@ -16,25 +16,26 @@
                                 Update Brand
                             </div>
                             <div class="card-body">
-                                <form action="{{ url(brand/update/'.$brands->id) }}" method="POST">
+                                <form>
                                     @csrf
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Update Brand Name</label>
+                                    <label for="brandName" class="form-label">Update Brand Name</label>
                                     <input type="text" name="brand_name" class="form-control" value="{{ $brands->brand_name }}">
-                                    
                                     @error('brand_name')
                                         <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Update Brand Image</label>
-                                    <input type="file" name="brand_image" class="form-control" value="{{ $brands->brand_image }}">
-                                    
-                                    @error('brand_image')
+                                    <label for="brandImg" class="form-label">Update Brand Image</label>
+                                    <input type="file" name="brand_img" class="form-control" value="{{ $brands->brand_img }}">
+                                    @error('brand_img')
                                         <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
-                                <button type="submit" class="btn btn-outline-primary">Update Brand</button>
+                                <div class='mb-3'>
+                                    <img src="{{asset($brands->brand_img)}}" alt="brand-image" style="height: 100px">
+                                </div>
+                                <button type="submit" class="btn btn-outline-primary">Update Category</button>
                                 </form>
                             </div>
                         </div>
