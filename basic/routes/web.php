@@ -57,6 +57,9 @@ Route::get('/brand/all', [BrandController::class, 'AllBrand'])->name('all.brand'
 Route::post('/brand/add', [BrandController::class, 'BrandAdd'])->name('brand.add');
 // Edit brand
 Route::get('/brand/edit/{id}', [BrandController::class, 'BrandEdit']);
+Route::post('/brand/update/{id}', [BrandController::class, 'BrandUpdate']);
+// Delete Brand
+Route::get('/brand/delete/{id}', [BrandController::class, 'BrandDelete']);
 
 Route::get('/dashboard', function () {
     // $users = User::all();
