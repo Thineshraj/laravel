@@ -26,13 +26,29 @@ Route::get('/', function () {
     return view('welcome');
 })->name('con');
 
+// >>>>>>>>>>>> Dashboard >>>>>>>>>>>>>>>>>>>>>
+
+// Route::get('/dashboard', function () {
+//     // $users = User::all();
+//     $users = DB::table('users')->get();
+//     return view('dashboard', compact('users'));
+//     })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    // $users = User::all();
+    $users = DB::table('users')->get();
+    return view('dashboard', compact('users'));
+})->name('dashboard');
+
+// >>>>>>>>>> Students >>>>>>>>>>>>>>>>>>
+
 // Route::get('/students', function() {
 //     return view('students');
 // });
 
 Route::get('/students', [StudentController::class, 'index']);
 
-// Category
+// >>>>>>>>>> Category >>>>>>>>>>>>>>>>>>
 Route::get('/category/all', [CategoryController::class, 'AllCat'])->name('all.category');
 
 Route::post('/category/add', [CategoryController::class, 'AddCat'])->name('add.category');
@@ -51,7 +67,7 @@ Route::get('/category/restore/{id}', [CategoryController::class, 'Restore']);
 // Force Delete
 Route::get('/category/forceDel/{id}', [CategoryController::class, 'ForceDel']);
 
-// >> Brand
+// >>>>>>>>>>>>>>>>>> Brand >>>>>>>>>>>>>>>>>>
 Route::get('/brand/all', [BrandController::class, 'AllBrand'])->name('all.brand');
 // add brand
 Route::post('/brand/add', [BrandController::class, 'BrandAdd'])->name('brand.add');
@@ -61,14 +77,10 @@ Route::post('/brand/update/{id}', [BrandController::class, 'BrandUpdate']);
 // Delete Brand
 Route::get('/brand/delete/{id}', [BrandController::class, 'BrandDelete']);
 
-// >>>>>>>>> Images
+// >>>>>>>>>>>>>>>>>> Images >>>>>>>>>>>>>>>>>>>>>
 Route::get('images/all', [BrandController::class, 'AllImages'])->name('all.images');
 Route::post('images/add', [BrandController::class, 'AddImages'])->name('images.add');
 
-Route::get('/dashboard', function () {
-    // $users = User::all();
-    $users = DB::table('users')->get();
-    return view('dashboard', compact('users'));
-})->middleware(['auth'])->name('dashboard');
+
 
 require __DIR__.'/auth.php';

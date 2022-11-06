@@ -7,11 +7,15 @@ use Illuminate\Support\Carbon;
 use App\Models\Brand;
 use App\Models\multipic;
 use Illuminate\Support\Facades\DB;
-// use Intervention\Image\Image;
 use Image;
 
 class BrandController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     public function AllBrand() {
         $brands = Brand::latest()->paginate(5);
         return view('admin.brand.index', compact('brands'));
@@ -128,11 +132,6 @@ class BrandController extends Controller
     }
 
     public function AddImages(Request $request) {
-        // $request->validate([
-        //     'images' => 'required|mimes:jpg,jpeg,png',
-        // ], [
-        //     'images.required' => 'Image is required',
-        // ]);
 
         // Images import
         $allImages = $request->file('images'); // Column name of the Brand image
