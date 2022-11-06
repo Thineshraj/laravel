@@ -61,6 +61,10 @@ Route::post('/brand/update/{id}', [BrandController::class, 'BrandUpdate']);
 // Delete Brand
 Route::get('/brand/delete/{id}', [BrandController::class, 'BrandDelete']);
 
+// >>>>>>>>> Images
+Route::get('images/all', [BrandController::class, 'AllImages'])->name('all.images');
+Route::post('images/add', [BrandController::class, 'AddImages'])->name('images.add');
+
 Route::get('/dashboard', function () {
     // $users = User::all();
     $users = DB::table('users')->get();

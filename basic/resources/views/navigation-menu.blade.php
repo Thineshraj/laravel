@@ -23,6 +23,10 @@
                     <x-jet-nav-link href="{{ route('all.brand') }}" :active="request()->routeIs('all.brand')">
                         Brand
                     </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('all.images') }}" :active="request()->routeIs('all.images')">
+                        Images
+                    </x-jet-nav-link>
                 </div>
             </div>
 

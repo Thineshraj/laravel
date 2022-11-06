@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\Brand;
+use App\Models\multipic;
 use Illuminate\Support\Facades\DB;
+// use Intervention\Image\Image;
+use Image;
 
 class BrandController extends Controller
 {
@@ -28,12 +31,20 @@ class BrandController extends Controller
         // Image import
         $brand_image = $request->file('brand_img'); // Column name of the Brand image
 
-        $name_generate = hexdec(uniqid());
-        $img_ext = strtolower($brand_image->getClientOriginalExtension());
-        $img_name = $name_generate.'.'.$img_ext;
-        $upload_location = 'img/brand/';
-        $last_img = $upload_location.$img_name;
-        $brand_image->move($upload_location, $img_name);
+        // $name_generate = hexdec(uniqid());
+        // $img_ext = strtolower($brand_image->getClientOriginalExtension());
+        // $img_name = $name_generate.'.'.$img_ext;
+        // $upload_location = 'img/brand/';
+        // $last_img = $upload_location.$img_name;
+        // $brand_image->move($upload_location, $img_name);
+
+        $name_generate = hexdec(uniqid()).'.'.$brand_image->getClientOriginalExtension();
+        
+        Image::make($brand_image)->resize(null, 300, function ($constraint) {
+    $constraint->aspectRatio();
+})->save('img/brand/'.$name_generate);
+
+        $last_img = 'img/brand/'.$name_generate;
 
         // add brand
         Brand::insert([
@@ -108,5 +119,41 @@ class BrandController extends Controller
         unlink($old_img);
 
         return redirect()->back()->with('success', 'Brand deleted Successfully 💥');
+    }
+
+    // >>>>>>>>>>>>>>> Images >>>>>>>>>>>>>>>>>>>>>>>>>
+    public function AllImages() {
+        $images = multipic::all();
+        return view('admin.images.index', compact('images'));
+    }
+
+    public function AddImages(Request $request) {
+        // $request->validate([
+        //     'images' => 'required|mimes:jpg,jpeg,png',
+        // ], [
+        //     'images.required' => 'Image is required',
+        // ]);
+
+        // Images import
+        $allImages = $request->file('images'); // Column name of the Brand image
+
+        foreach($allImages as $image) {
+            $name_generate = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            
+            Image::make($image)->resize(null, 300, function ($constraint) {
+        $constraint->aspectRatio();
+    })->save('img/multipics/'.$name_generate);
+    
+            $last_img = 'img/multipics/'.$name_generate;
+    
+            // add brand
+            multipic::insert([
+                'images' => $last_img,
+                'created_at' => Carbon::now(),
+            ]);
+        }
+
+
+        return Redirect()->back()->with('success', 'Brand added successfully 🎉');
     }
 }
