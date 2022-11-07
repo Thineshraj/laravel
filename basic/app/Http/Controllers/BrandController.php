@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\multipic;
 use Illuminate\Support\Facades\DB;
 use Image;
+use Auth;
 
 class BrandController extends Controller
 {
@@ -154,5 +155,15 @@ class BrandController extends Controller
 
 
         return Redirect()->back()->with('success', 'Brand added successfully 🎉');
+    }
+
+
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//
+    // >>>>>>>>>>>>>>> With new design >>>>>>>>>>>>>>>>>>//
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//
+
+    public function userLogout() {
+        Auth::logout();
+        return Redirect()->route('login')->with('success', 'Successfully Logout');
     }
 }

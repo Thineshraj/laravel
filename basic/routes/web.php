@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -18,12 +19,13 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/', function () {
-    return view('welcome');
+    $brands = DB::table('brands')->get();
+    return view('home', compact('brands'));
 })->name('con');
 
 // >>>>>>>>>>>> Dashboard >>>>>>>>>>>>>>>>>>>>>
@@ -36,8 +38,9 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     // $users = User::all();
-    $users = DB::table('users')->get();
-    return view('dashboard', compact('users'));
+    // $users = DB::table('users')->get();
+    // return view('dashboard', compact('users'));
+    return view('admin.index');
 })->name('dashboard');
 
 // >>>>>>>>>> Students >>>>>>>>>>>>>>>>>>
@@ -80,6 +83,17 @@ Route::get('/brand/delete/{id}', [BrandController::class, 'BrandDelete']);
 // >>>>>>>>>>>>>>>>>> Images >>>>>>>>>>>>>>>>>>>>>
 Route::get('images/all', [BrandController::class, 'AllImages'])->name('all.images');
 Route::post('images/add', [BrandController::class, 'AddImages'])->name('images.add');
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//
+// >>>>>>>>>>>>>>> With new design >>>>>>>>>>>>>>>>>>//
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//
+
+Route::get('user/logout', [BrandController::class, 'userLogout'])->name('user.logout');
+
+// >>>> Sliders
+Route::get('/slider/all', [SliderController::class, 'AllSlider'])->name('all.slider');
+Route::post('/slider/add', [SliderController::class, 'AddSlider'])->name('slider.add');
+
 
 
 
