@@ -73,7 +73,7 @@
                                 <label for="exampleInputEmail1" class="form-label">Slider Image</label>
                                 <input type="file" name="img" class="form-control">
                                 
-                                @error('brand_img')
+                                @error('img')
                                     <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
