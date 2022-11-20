@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\FrontPagesController;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -106,6 +107,9 @@ Route::post('/about/store', [AboutUsController::class, 'StoreAbout'])->name('sto
 Route::get('/about/edit/{id}', [AboutUsController::class, 'EditAbout']);
 Route::post('/about/update/{id}', [AboutUsController::class, 'UpdateAbout']);
 Route::get('/about/delete/{id}', [AboutUsController::class, 'DeleteAbout']);
+
+// >>>>>> Frontend Pages >>>>>>>>
+Route::get('/portfolio', [FrontPagesController::class, 'Portfolio'])->name('portfolio');
 
 
 
