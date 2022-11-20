@@ -2,10 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Models\AboutUs;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\AboutUsController;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -25,7 +27,8 @@ use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
     $brands = DB::table('brands')->get();
-    return view('home', compact('brands'));
+    $abouts = DB::table('about_us')->first();
+    return view('home', compact('brands', 'abouts'));
 })->name('con');
 
 // >>>>>>>>>>>> Dashboard >>>>>>>>>>>>>>>>>>>>>
@@ -93,6 +96,14 @@ Route::get('user/logout', [BrandController::class, 'userLogout'])->name('user.lo
 // >>>> Sliders
 Route::get('/slider/all', [SliderController::class, 'AllSlider'])->name('all.slider');
 Route::post('/slider/add', [SliderController::class, 'AddSlider'])->name('slider.add');
+
+// >>>>> About us
+Route::get('/about/all', [AboutUsController::class, 'AllAbout'])->name('all.aboutUs');
+Route::get('/about/add', [AboutUsController::class, 'AddAbout'])->name('aboutUs.add');
+Route::post('/about/store', [AboutUsController::class, 'StoreAbout'])->name('store.about');
+Route::get('/about/edit/{id}', [AboutUsController::class, 'EditAbout']);
+Route::post('/about/update/{id}', [AboutUsController::class, 'UpdateAbout']);
+Route::get('/about/delete/{id}', [AboutUsController::class, 'DeleteAbout']);
 
 
 
