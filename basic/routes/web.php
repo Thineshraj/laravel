@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FrontPagesController;
 use Illuminate\Support\Facades\DB;
 
@@ -108,8 +109,20 @@ Route::get('/about/edit/{id}', [AboutUsController::class, 'EditAbout']);
 Route::post('/about/update/{id}', [AboutUsController::class, 'UpdateAbout']);
 Route::get('/about/delete/{id}', [AboutUsController::class, 'DeleteAbout']);
 
+// >>>>> Contact
+Route::get('/admin/contact', [ContactController::class, 'ContactPage'])->name('admin.contact');
+Route::get('/admin/contact/add', [ContactController::class, 'ContactAdd'])->name('contact.add');
+Route::post('/admin/contact/store', [ContactController::class, 'ContactStore'])->name('store.contact');
+Route::get('/admin/contact/edit/{id}', [ContactController::class, 'ContactEdit']);
+Route::post('/admin/contact/update/{id}', [ContactController::class, 'ContactUpdate']);
+Route::get('/admin/contact/delete/{id}', [ContactController::class, 'ContactDelete']);
+Route::get('/admin/contact/message', [ContactController::class, 'ContactMessage'])->name('admin.contact.message');
+Route::get('/admin/contact/message/delete/{id}', [ContactController::class, 'MessageDelete']);
+
 // >>>>>> Frontend Pages >>>>>>>>
 Route::get('/portfolio', [FrontPagesController::class, 'Portfolio'])->name('portfolio');
+Route::get('/contact', [FrontPagesController::class, 'Contact'])->name('contact');
+Route::post('/contact/form', [FrontPagesController::class, 'ContactForm'])->name('contact.form');
 
 
 
