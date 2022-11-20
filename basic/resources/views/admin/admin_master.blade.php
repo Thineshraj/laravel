@@ -132,15 +132,15 @@
                   <!-- User Account -->
                   <li class="dropdown user-menu">
                     <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                      <img src="{{ asset('backend/assets/img/user/user.png') }}" class="user-image" alt="User Image" />
+                      <img src="{{ '/storage/'.Auth::user()->profile_photo_path }}" class="user-image" alt="User Image" />
                       <span class="d-none d-lg-inline-block">{{ Auth::user()->name }}</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                       <!-- User image -->
                       <li class="dropdown-header">
-                        <img src="{{ asset('backend/assets/img/user/user.png') }}" class="img-circle" alt="User Image" />
+                        <img src="{{  '/storage/'.Auth::user()->profile_photo_path }}" class="img-circle" alt="User Image" />
                         <div class="d-inline-block">
-                          {{ Auth::user()->name }} <small class="pt-1">abdus@gmail.com</small>
+                          {{ Auth::user()->name }} <small class="pt-1">{{ Auth::user()->email }}</small>
                         </div>
                       </li>
 
@@ -150,8 +150,8 @@
                         </a>
                       </li>
                       <li>
-                        <a href="email-inbox.html">
-                          <i class="mdi mdi-email"></i> Message
+                        <a href="{{ route('admin.password.change') }}">
+                          <i class="mdi mdi-email"></i> Change Password
                         </a>
                       </li>
                       <li>

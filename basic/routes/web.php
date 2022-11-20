@@ -10,6 +10,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\FrontPagesController;
 use Illuminate\Support\Facades\DB;
 
@@ -118,6 +119,10 @@ Route::post('/admin/contact/update/{id}', [ContactController::class, 'ContactUpd
 Route::get('/admin/contact/delete/{id}', [ContactController::class, 'ContactDelete']);
 Route::get('/admin/contact/message', [ContactController::class, 'ContactMessage'])->name('admin.contact.message');
 Route::get('/admin/contact/message/delete/{id}', [ContactController::class, 'MessageDelete']);
+
+// Admin Profile edit
+Route::get('/admin/password', [AdminProfileController::class, 'ChangePassword'])->name('admin.password.change');
+Route::post('/admin/password/update', [AdminProfileController::class, 'UpdatePassword'])->name('admin.password.update');
 
 // >>>>>> Frontend Pages >>>>>>>>
 Route::get('/portfolio', [FrontPagesController::class, 'Portfolio'])->name('portfolio');
