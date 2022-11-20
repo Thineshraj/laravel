@@ -51,7 +51,7 @@
                               </a>
                             </li>
                             <li  class="active" >
-                              <a class="sidenav-item-link" href="index.html">
+                              <a class="sidenav-item-link" href="{{ route('all.images') }}">
                                 <span class="nav-text">Portfolio</span>
                                 
                               </a>

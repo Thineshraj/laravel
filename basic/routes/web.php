@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\AboutUs;
+use App\Models\multipic;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
@@ -28,7 +29,8 @@ use Illuminate\Support\Facades\DB;
 Route::get('/', function () {
     $brands = DB::table('brands')->get();
     $abouts = DB::table('about_us')->first();
-    return view('home', compact('brands', 'abouts'));
+    $images = multipic::all();
+    return view('home', compact('brands', 'abouts', 'images'));
 })->name('con');
 
 // >>>>>>>>>>>> Dashboard >>>>>>>>>>>>>>>>>>>>>
