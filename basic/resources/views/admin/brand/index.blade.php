@@ -7,12 +7,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>{{ session('success') }}</strong>
-                        <button type="button" class="btn-close text-success" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    @endif
                     <div class="card">
                         <div class="card-header">All Brands</div>
                         <div class="card-body">
