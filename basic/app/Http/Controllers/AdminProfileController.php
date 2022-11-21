@@ -34,4 +34,24 @@ class AdminProfileController extends Controller
         };
 
     }
+
+    public function AdminProfile () {
+        if(Auth::user()){
+            $user = User::find(Auth::user()->id);
+            if($user) {
+                return view('admin.body.admin_profile', compact('user'));
+            }
+        }
+    }
+
+    public function AdminProfileUpdate (Request $request) {
+        $user = User::find(Auth::id());
+
+        $user->update([
+            "name" => $request->name,
+            "email" => $request->email
+        ]);
+
+        return Redirect()->route('dashboard');
+    }
 }

@@ -145,7 +145,7 @@
                       </li>
 
                       <li>
-                        <a href="profile.html">
+                        <a href="{{ route('admin.profile') }}">
                           <i class="mdi mdi-account"></i> My Profile
                         </a>
                       </li>

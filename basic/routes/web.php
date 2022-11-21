@@ -123,6 +123,8 @@ Route::get('/admin/contact/message/delete/{id}', [ContactController::class, 'Mes
 // Admin Profile edit
 Route::get('/admin/password', [AdminProfileController::class, 'ChangePassword'])->name('admin.password.change');
 Route::post('/admin/password/update', [AdminProfileController::class, 'UpdatePassword'])->name('admin.password.update');
+Route::get('/admin.profile', [AdminProfileController::class, 'AdminProfile'])->name('admin.profile');
+Route::post('/admin/profile/update', [AdminProfileController::class, 'AdminProfileUpdate'])->name('admin.profile.update');
 
 // >>>>>> Frontend Pages >>>>>>>>
 Route::get('/portfolio', [FrontPagesController::class, 'Portfolio'])->name('portfolio');
