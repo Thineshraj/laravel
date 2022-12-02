@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
 use DB;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Hash; // will change the password to enctrypt
+use App\Http\Requests\RegisterRequest;
 
 class AuthController extends Controller
 {
+    // Login
     public function Login (Request $request) {
         try {
             if (Auth::attempt($request->only('email', 'password'))) {
@@ -18,12 +20,12 @@ class AuthController extends Controller
 
                 return response([
                     'message' => 'Successfully Login',
-                    'token' => $token,
+                    'token' => $token->token,
                     'user' => $user
                 ], 200);
             }
 
-        } catch (Exeption $exeption) {
+        } catch (Exception $exception) {
             return response([
                 'message' => $exeption->getMessage()
             ], 400);
@@ -32,5 +34,28 @@ class AuthController extends Controller
         return response([
             'message' => 'Invalid Email or Password'
         ], 401);
+    }
+
+    // Register
+    public function Register (RegisterRequest $request) {
+        try {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ]);
+            $token = $user->createToken('app')->accessToken;
+
+            return response([
+                'message' => 'User created successfully',
+                'token' => $token->token,
+                'user' => $user
+            ], 200);
+
+        } catch (Exception $exception) {
+            return response([
+                'message' => $exception->getMessage()
+            ], 400);
+        }
     }
 }
