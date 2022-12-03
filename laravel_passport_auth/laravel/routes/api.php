@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ForgotPassController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,7 @@ use App\Http\Controllers\AuthController;
 Route::post('/login', [AuthController::class, 'Login']);
 
 // Register
-Route::post('/register', [AuthController::class, 'Register']);
+Route::post('/register', [AuthController::class, 'Register']); 
+
+// Forgot Password
+Route::post('/forgotpassword', [ForgotPassController::class, 'ForgotPassword']);
