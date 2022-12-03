@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgotPassController;
+use App\Http\Controllers\ResetPassController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,6 @@ Route::post('/register', [AuthController::class, 'Register']);
 
 // Forgot Password
 Route::post('/forgotpassword', [ForgotPassController::class, 'ForgotPassword']);
+
+// Reset Password
+Route::post('/resetpassword', [ResetPassController::class, 'ResetPassword']);
