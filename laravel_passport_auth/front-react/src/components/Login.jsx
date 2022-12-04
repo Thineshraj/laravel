@@ -44,6 +44,8 @@ function Login() {
               Login
             </button>
             Forget my password <Link to='forget'>Click here</Link>
+            <br />
+            Don't have Account? <Link to='register'>Register</Link>
           </form>
         </div>
       </div>
