@@ -28,27 +28,22 @@ function Nav() {
               </Link>
             </li>
             <li class='nav-item'>
-              <Link class='nav-link' to='/'>
+              <Link class='nav-link' to='/profile'>
                 Profile
-              </Link>
-            </li>
-            <li class='nav-item'>
-              <Link class='nav-link' to='/'>
-                Pricing
               </Link>
             </li>
           </ul>
           <span class='navbar-text'>
             <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
               <li class='nav-item'>
-                <a class='nav-link' href='#'>
+                <Link class='nav-link' to='/login'>
                   Login
-                </a>
+                </Link>
               </li>
               <li class='nav-item'>
-                <a class='nav-link' href='#'>
+                <Link class='nav-link' to='/register'>
                   Register
-                </a>
+                </Link>
               </li>
             </ul>
           </span>
