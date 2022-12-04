@@ -7,18 +7,21 @@ import ForgetPass from '../components/ForgetPass';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-const Header = () => {
+const Header = (props) => {
   return (
     <>
       <Router>
-        <Nav />
+        <Nav setUserProp={props.setUserProp} />
 
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route exact path='/profile' component={Profile} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/register' component={Register} />
-          <Route exact path='/forget' component={ForgetPass} />
+          <Route
+            path='/profile'
+            component={() => <Profile user={props.user} />}
+          />
+          <Route path='/login' component={Login} />
+          <Route path='/register' component={Register} />
+          <Route path='/forget' component={ForgetPass} />
         </Switch>
       </Router>
     </>

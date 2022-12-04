@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
-function Login() {
+function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -20,6 +20,7 @@ function Login() {
       .then((response) => {
         localStorage.setItem('token', response.data.token);
         setLoggedIn(true);
+        props.setUserProp(response.data.user);
       })
       .catch((error) => {
         console.log(error);
@@ -37,40 +38,40 @@ function Login() {
           <h3 className='text-center'>Login Account</h3>
 
           <form onSubmit={FormSubmit}>
-            <div class='mb-3'>
-              <label for='exampleInputEmail1' class='form-label'>
+            <div className='mb-3'>
+              <label htmlFor='exampleInputEmail1' className='form-label'>
                 Email address
               </label>
               <input
                 type='email'
                 name='email'
-                class='form-control'
+                className='form-control'
                 aria-describedby='emailHelp'
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div class='mb-3'>
-              <label for='exampleInputPassword1' class='form-label'>
+            <div className='mb-3'>
+              <label htmlFor='exampleInputPassword1' className='form-label'>
                 Password
               </label>
               <input
                 type='password'
                 name='password'
-                class='form-control'
+                className='form-control'
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <div class='mb-3 form-check'>
+            <div className='mb-3 form-check'>
               <input
                 type='checkbox'
-                class='form-check-input'
+                className='form-check-input'
                 id='exampleCheck1'
               />
-              <label class='form-check-label' for='exampleCheck1'>
+              <label className='form-check-label' htmlFor='exampleCheck1'>
                 Check me out
               </label>
             </div>
-            <button type='submit' class='btn btn-primary col-12 mb-3'>
+            <button type='submit' className='btn btn-primary col-12 mb-3'>
               Login
             </button>
             Forget my password <Link to='forget'>Click here</Link>

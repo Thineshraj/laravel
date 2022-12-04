@@ -9,18 +9,18 @@ function ForgetPass() {
           <h3 className='text-center'>Forget Password</h3>
 
           <form>
-            <div class='mb-3'>
-              <label for='exampleInputEmail1' class='form-label'>
+            <div className='mb-3'>
+              <label for='exampleInputEmail1' className='form-label'>
                 Email address
               </label>
               <input
                 type='email'
-                class='form-control'
+                className='form-control'
                 id='exampleInputEmail1'
                 aria-describedby='emailHelp'
               />
             </div>
-            <button type='submit' class='btn btn-primary col-12 mb-3'>
+            <button type='submit' className='btn btn-primary col-12 mb-3'>
               Submit
             </button>
             Back to Login page <Link to='login'>Click here</Link>

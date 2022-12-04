@@ -9,39 +9,39 @@ function Register() {
           <h3 className='text-center'>Register Account</h3>
 
           <form>
-            <div class='mb-3'>
-              <label for='exampleInputText' class='form-label'>
+            <div className='mb-3'>
+              <label htmlFor='exampleInputText' className='form-label'>
                 User Name
               </label>
               <input
                 type='text'
-                class='form-control'
+                className='form-control'
                 aria-describedby='emailHelp'
               />
             </div>
-            <div class='mb-3'>
-              <label for='exampleInputEmail1' class='form-label'>
+            <div className='mb-3'>
+              <label htmlFor='exampleInputEmail1' className='form-label'>
                 Email address
               </label>
               <input
                 type='email'
-                class='form-control'
+                className='form-control'
                 aria-describedby='emailHelp'
               />
             </div>
-            <div class='mb-3'>
-              <label for='exampleInputPassword1' class='form-label'>
+            <div className='mb-3'>
+              <label htmlFor='exampleInputPassword1' className='form-label'>
                 Password
               </label>
-              <input type='password' class='form-control' />
+              <input type='password' className='form-control' />
             </div>
-            <div class='mb-3'>
-              <label for='exampleInputPassword1' class='form-label'>
+            <div className='mb-3'>
+              <label htmlFor='exampleInputPassword1' className='form-label'>
                 Confirm Password
               </label>
-              <input type='password' class='form-control' />
+              <input type='password' className='form-control' />
             </div>
-            <button type='submit' class='btn btn-primary col-12 mb-3'>
+            <button type='submit' className='btn btn-primary col-12 mb-3'>
               Register
             </button>
             Have an Account? <Link to='login'>Login</Link>
