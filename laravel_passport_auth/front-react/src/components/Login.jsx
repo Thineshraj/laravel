@@ -1,23 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+
+  const FormSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      email,
+      password,
+    };
+
+    axios
+      .post('/login', data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <div className='row mt-5'>
         <div className='bg-light col-lg-4 offset-lg-4 p-5'>
           <h3 className='text-center'>Login Account</h3>
 
-          <form>
+          <form onSubmit={FormSubmit}>
             <div class='mb-3'>
               <label for='exampleInputEmail1' class='form-label'>
                 Email address
               </label>
               <input
                 type='email'
+                name='email'
                 class='form-control'
-                id='exampleInputEmail1'
                 aria-describedby='emailHelp'
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div class='mb-3'>
@@ -26,8 +49,9 @@ function Login() {
               </label>
               <input
                 type='password'
+                name='password'
                 class='form-control'
-                id='exampleInputPassword1'
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div class='mb-3 form-check'>
