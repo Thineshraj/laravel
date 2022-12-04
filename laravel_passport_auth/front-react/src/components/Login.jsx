@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const FormSubmit = (e) => {
     e.preventDefault();
@@ -17,12 +18,17 @@ function Login() {
     axios
       .post('/login', data)
       .then((response) => {
-        console.log(response);
+        localStorage.setItem('token', response.data.token);
+        setLoggedIn(true);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  if (loggedIn) {
+    return <Redirect to='/profile' />;
+  }
 
   return (
     <>
