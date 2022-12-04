@@ -23,7 +23,7 @@ function Nav() {
         <div class='collapse navbar-collapse' id='navbarText'>
           <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
             <li class='nav-item'>
-              <Link class='nav-link active' to='/'>
+              <Link class='nav-link' to='/'>
                 Home
               </Link>
             </li>
