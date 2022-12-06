@@ -20,7 +20,6 @@ function Login(props) {
       .then((response) => {
         localStorage.setItem('token', response.data.token);
         setLoggedIn(true);
-        console.log(loggedIn);
         props.setUserProp(response.data.user);
       })
       .catch((error) => {
