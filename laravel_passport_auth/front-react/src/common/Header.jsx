@@ -11,7 +11,7 @@ const Header = (props) => {
   return (
     <>
       <Router>
-        <Nav setUserProp={props.setUserProp} />
+        <Nav user={props.user} setUserProp={props.setUserProp} />
 
         <Switch>
           <Route exact path='/' component={Home} />
@@ -19,8 +19,14 @@ const Header = (props) => {
             path='/profile'
             component={() => <Profile user={props.user} />}
           />
-          <Route path='/login' component={Login} />
-          <Route path='/register' component={Register} />
+          <Route
+            path='/login'
+            render={() => <Login setUserProp={props.setUserProp} />}
+          />
+          <Route
+            path='/register'
+            render={() => <Register setUserProp={props.setUserProp} />}
+          />
           <Route path='/forget' component={ForgetPass} />
         </Switch>
       </Router>

@@ -5,7 +5,7 @@ import axios from 'axios';
 function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
+  // const [message, setMessage] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
 
   const FormSubmit = (e) => {
@@ -20,6 +20,7 @@ function Login(props) {
       .then((response) => {
         localStorage.setItem('token', response.data.token);
         setLoggedIn(true);
+        console.log(loggedIn);
         props.setUserProp(response.data.user);
       })
       .catch((error) => {
