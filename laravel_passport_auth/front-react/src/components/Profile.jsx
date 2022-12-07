@@ -1,7 +1,12 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 function Profile(props) {
+  // If no token is in the localStorage, redirect the '/profile' to '/login'
+  if (!localStorage.getItem('token')) {
+    return <Redirect to='/login' />;
+  }
+
   return (
     <>
       <div className='row mt-5'>

@@ -31,6 +31,10 @@ function Login(props) {
   if (loggedIn) {
     return <Redirect to='/profile' />;
   }
+  // Protect url
+  if (localStorage.getItem('token')) {
+    return <Redirect to='/profile' />;
+  }
 
   let error = '';
   if (message) {
