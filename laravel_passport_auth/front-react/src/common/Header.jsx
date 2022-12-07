@@ -4,6 +4,7 @@ import Profile from '../components/Profile';
 import Login from '../components/Login';
 import Register from '../components/Register';
 import ForgetPass from '../components/ForgetPass';
+import ResetPass from '../components/ResetPass';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -28,6 +29,7 @@ const Header = (props) => {
             render={() => <Register setUserProp={props.setUserProp} />}
           />
           <Route path='/forget' component={ForgetPass} />
+          <Route path='/reset/:id' component={ResetPass} />
         </Switch>
       </Router>
     </>
