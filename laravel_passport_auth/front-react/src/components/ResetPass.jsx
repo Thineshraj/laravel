@@ -8,6 +8,7 @@ function ResetPass() {
   const [password, setPassword] = useState('');
   const [password_confirmation, setPassword_confirmation] = useState('');
   const [isReset, setIsReset] = useState(false);
+  const [message, setMessage] = useState('');
 
   const formSubmit = (e) => {
     e.preventDefault();
@@ -21,11 +22,11 @@ function ResetPass() {
     axios
       .post('/resetpassword', data)
       .then((response) => {
-        console.log(response);
+        setMessage(response.data.message);
         setIsReset(true);
       })
       .catch((error) => {
-        console.error(error);
+        setMessage(error.data.message);
       });
   };
 
@@ -33,12 +34,21 @@ function ResetPass() {
     return <Redirect to='/login' />;
   }
 
+  let error = '';
+  if (message) {
+    error = (
+      <div className='alert alert-danger' role='alert'>
+        {message}
+      </div>
+    );
+  }
+
   return (
     <>
       <div className='row mt-5'>
         <div className='bg-light col-lg-4 offset-lg-4 p-5'>
           <h3 className='text-center'>Reset Password</h3>
-
+          {error}
           <form onSubmit={formSubmit}>
             <div className='mb-3'>
               <label htmlFor='exampleInputEmail1' className='form-label'>
@@ -67,7 +77,7 @@ function ResetPass() {
             </div>
             <div className='mb-3'>
               <label htmlFor='exampleInputPassword1' className='form-label'>
-                Password
+                New Password
               </label>
               <input
                 type='password'

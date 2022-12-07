@@ -12,9 +12,7 @@ function App() {
       .then((response) => {
         setUserMethod(response.data);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }, []);
 
   const setUserMethod = (userData) => {

@@ -5,7 +5,7 @@ import axios from 'axios';
 function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
 
   const FormSubmit = (e) => {
@@ -18,12 +18,13 @@ function Login(props) {
     axios
       .post('/login', data)
       .then((response) => {
+        setMessage(response.data.message);
         localStorage.setItem('token', response.data.token);
         setLoggedIn(true);
         props.setUserProp(response.data.user);
       })
       .catch((error) => {
-        console.log(error);
+        setMessage(error.response.data.message);
       });
   };
 
@@ -31,12 +32,21 @@ function Login(props) {
     return <Redirect to='/profile' />;
   }
 
+  let error = '';
+  if (message) {
+    error = (
+      <div className='alert alert-danger' role='alert'>
+        {message}
+      </div>
+    );
+  }
+
   return (
     <>
       <div className='row mt-5'>
         <div className='bg-light col-lg-4 offset-lg-4 p-5'>
           <h3 className='text-center'>Login Account</h3>
-
+          {error}
           <form onSubmit={FormSubmit}>
             <div className='mb-3'>
               <label htmlFor='exampleInputEmail1' className='form-label'>
